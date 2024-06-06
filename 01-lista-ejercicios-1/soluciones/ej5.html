@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Solución del ejercicio 5 </title>
+
+    <style>
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main {
+            width: 90vw;
+            margin: auto;
+            padding: 1em;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            border: none;
+            padding: 0.5em;
+            outline: 1px solid #000;
+            background-color: #fff;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: #000;
+            color: #fff;
+        }
+
+        #input-box {
+            display: grid;
+
+        }
+        
+        #input-box label {
+            text-align: center;
+            margin-bottom: 0.2em;
+        }
+    </style>
+
+</head>
+
+<body>
+    <main>
+        <h1>Ejercicio 5</h1>
+        <p>Comprobación de DNI.</p>
+        <div id="input-box">
+            <label for="numero">Numero</label>
+            <input type="text" placeholder="DNI sin letra" id="numero">
+            <br>
+            <label for="letra">Letra</label>
+            <input type="text" placeholder="A" id="letra">
+            <br>
+            <button onclick="compruebaDNI(document.getElementById('numero').value, document.getElementById('letra').value)">Ejecutar</button>
+        </div>
+        <div id="resultado">
+            <p>Aquí aparecerá el resultado.</p>
+        </div>
+        <a href="../index.html">Volver atrás.</a>
+    </main>
+
+    <script>
+        const p = document.querySelector("#resultado p");
+        function compruebaDNI (numero, letra) {
+            document.getElementById("numero").value = '';
+            document.getElementById("letra").value = '';
+            const letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+            if (numero && letra) {
+                if (!isNaN(parseInt(numero)) && isNaN(parseInt(letra))) {
+                    let letraCorrecta = letras[numero%23];
+                    if (letra === letraCorrecta) {
+                        p.innerHTML = "El DNI es correcto.";
+                    } else {
+                        p.innerHTML = "El DNI es incorrecto.";
+                    }
+                } else {
+                    p.innerHTML = "No has introducido bien los campos.";
+                    reseteaP();  
+                }
+            } else {
+                p.innerHTML = "Introduce todos los campos."
+                reseteaP();
+            }
+        }
+        function reseteaP () {
+            setTimeout(() => {
+                p.innerHTML = "Aquí aparecerá el resultado.";
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

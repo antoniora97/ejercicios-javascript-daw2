@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Solución del ejercicio 2 </title>
+
+    <style>
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        a {
+            width: fit-content;
+        }
+
+        main {
+            width: 25em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+        }
+
+        main h1 {
+            text-align: center;
+        }
+
+        main p {
+            text-align: center;
+            width: 100%;
+        }
+
+        #input-box {
+            display: flex;
+            gap: 1em;
+        }
+
+        #resultado {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+        }
+
+        #resultado #circulo {
+            width: 15em;
+            height: 9em;
+            border-radius: 5em;
+            border: 2px solid #000;
+            position: relative;
+        }
+
+        #radio {
+            width: 50%;
+            border: 1px solid #000;
+            background-color: #000;
+            position: absolute;
+            left: 0;
+            top: 50%;
+        }
+
+        #circulo p {
+            position: absolute;
+            left: 55%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: fit-content;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Ejercicio 2</h1>
+        <p>Área de un círculo.</p>
+        <div id="input-box">
+            <label for="numero">Radio</label>
+            <input type="text" placeholder="0" id="numero">
+            <button onclick="calculaAreaCirculo(parseFloat(document.getElementById('numero').value))">Calcular</button>
+        </div>
+        <div id="resultado">
+            <div id="circulo">
+                <div id="radio"></div>
+                <p></p>
+            </div>
+            <p id="resultado_p">Aquí aparecerá el resultado.</p>
+        </div>
+        
+        <a href="../index.html">Volver atrás.</a>
+    </main>
+
+    <script>
+        const p_resultado = document.getElementById("resultado_p");
+        const p_radio = document.querySelector("#circulo p");
+        function calculaAreaCirculo(radio) {
+            document.getElementById("numero").value = "";
+            p_radio.innerHTML = "r = " + radio + "cm";
+            if (radio >= 0) {
+                p_resultado.innerHTML = "El área del círculo es " + (Math.PI*(Math.pow(radio,2)));
+            } else {
+                p.innerHTML = "Introduce un número."
+                setTimeout(() => {
+                    p.innerHTML = "Aquí aparecerá el resultado.";
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+
+</html>

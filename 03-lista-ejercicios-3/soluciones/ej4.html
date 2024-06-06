@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Solución del ejercicio 4 </title>
+
+    <style>
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        a {
+            width: fit-content;
+        }
+
+        main {
+            width: 25em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+        }
+
+        main h1 {
+            text-align: center;
+        }
+
+        main p {
+            text-align: center;
+            width: 100%;
+        }
+
+        #input-box {
+            display: flex;
+            gap: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Ejercicio 4</h1>
+        <p>Datos de una cadena de texto introducida.</p>
+        <div id="input-box">
+            <label for="numero">Cadena</label>
+            <input type="text" placeholder="Escribe algo" id="cadena">
+            <button onclick="extraeInfo(document.getElementById('cadena').value)">Evaluar</button>
+        </div>
+        <p id="resultado">Aquí aparecerá el resultado.</p>
+        <a href="../index.html">Volver atrás.</a>
+    </main>
+
+    <script>
+        const p = document.getElementById("resultado");
+        function extraeInfo (cadena) {
+            document.getElementById("cadena").value = "";
+            if (cadena.length > 0) {
+                p.innerHTML = "La cadena <i><del>" + cadena + "</del></i> tiene " + cadena.length + " caracteres."; 
+            } else {
+                p.innerHTML = "Introduce algo."
+                setTimeout(() => {
+                    p.innerHTML = "Aquí aparecerá el resultado.";
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+
+</html>

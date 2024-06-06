@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej8</title>
+</head>
+
+<body>
+    <p>
+        <label for="comentarios">Ingrese sus comentarrios</label>
+    </p>
+    <p>
+        <textarea name="comentarios" id="comentarios" cols="30" rows="10" maxlength="50"></textarea>
+    </p>
+    <p>
+        <span>Caracteres posibles:</span>
+        <span id="resultado">50</span>
+    </p>
+
+    <script>
+        const resultado = document.getElementById("resultado");
+        const cuadro_texto = document.getElementById("comentarios");
+        cuadro_texto.addEventListener("input", (e) => {
+            if (e.inputType == "deleteContentBackward") {
+                resultado.innerHTML = parseInt(resultado.innerHTML) + 1
+            } else {
+                resultado.innerHTML -= 1
+            }
+            console.log(e.inputType) // para ver qué input se ha realizado
+        })
+    </script>
+</body>
+
+</html>

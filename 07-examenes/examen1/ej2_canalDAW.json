@@ -1,0 +1,32 @@
+{
+    "nombre": "CanalDAW",
+    "fecha": "10/19/2022",
+    "ciudadSedePrincipal": "Jerez de la Frontera",
+    "programas": [
+        {
+            "nombre": "Telediario 1",
+            "horaEmision": "16:00",
+            "generos": ["Informativo"]
+        },
+        {
+            "nombre": "Documental 1",
+            "horaEmision": "17:00",
+            "generos": ["Documental", "Historia"]
+        },
+        {
+            "nombre": "Película 1",
+            "horaEmision": "17:45",
+            "generos": ["Película", "Suspense", "Drama", "Historia"]
+        },
+        {
+            "nombre": "Película 2",
+            "horaEmision": "19:45",
+            "generos": ["Película", "Comedia"]
+        },
+        {
+            "nombre": "Telediario 2",
+            "horaEmision": "22:00",
+            "generos": ["Informativo"]
+        }
+    ]
+}

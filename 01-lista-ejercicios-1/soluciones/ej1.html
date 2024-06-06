@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Solución del ejercicio 1 </title>
+
+        <style>
+            *,
+            *::after,
+            *::before {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            main {
+                width: 90vw;
+                margin: auto;
+                padding: 1em;
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+                align-items: center;
+                justify-content: center;
+            }
+
+            body main #input-box {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            body main #input-box > * {
+                margin: 0 0.5em;
+            }
+
+            body main #input-box button {
+                border: none;
+                padding: 0.5em;
+                outline: 1px solid #000;
+                background-color: #fff;
+            }
+
+            body main #input-box button:hover {
+                cursor: pointer;
+                background-color: #000;
+                color: #fff;
+            }
+
+            body main #resultado ul {
+                list-style-type: none;
+                padding: 0 1em;
+                width: 100%;
+            }
+
+            body main #resultado ul > * {
+                text-align: center;
+            }
+
+            body main #resultado ul p {
+                margin-bottom: 0.5em;
+            }
+
+            body main #resultado ul li {
+                word-spacing: 1em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <h1>Ejercicio 1</h1>
+            <p>Tabla de multiplicar de un número introducido.</p>
+            <div id="input-box">
+                <label for="numero">Número</label>
+                <input type="text" placeholder="0" id="input">
+                <button onclick="generaTabla(document.getElementById('input').value)">Ejecutar</button>
+            </div>
+            <div id="resultado">
+                <ul>
+                    <p id="resultado_titulo">Aquí aparecerá la tabla.</p>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <a href="../index.html">Volver atrás.</a>
+        </main>
+
+        <script>
+            const all_li_elements = document.querySelectorAll("#resultado ul li");
+            const p = document.getElementById("resultado_titulo");
+            const input = document.getElementById("input");
+            function generaTabla (numero) {
+                numero = parseInt(numero);
+                input.value = '';
+                if (numero > 0) {
+                    p.innerHTML = "Tabla del " +  numero;
+                    for (let i = 1; i <= 10; i++) all_li_elements[i-1].innerHTML = numero + " x " + i + " = " + (numero*i);
+                } else {
+                    for (i = 0; i < all_li_elements.length; i++) all_li_elements[i].innerHTML = "";
+                    p.innerHTML = "Introduce un número mayor a 0.";
+                    setTimeout( () => {
+                        p.innerHTML = "Aquí aparecerá la tabla."
+                    }, 2000);
+                }
+            }
+        </script>
+    </body>
+
+</html>

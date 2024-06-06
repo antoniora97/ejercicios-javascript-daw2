@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Validación de un formulario sencillo </title>
+
+    <style>
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+        }
+
+        main {
+            display: grid;
+            place-content: center;
+            height: 100%;
+        }
+
+        h1 {
+            margin-bottom: 1em;
+        }
+    </style>
+
+    
+</head>
+
+<body>
+    <main>
+        <h1>Identificación mediante el NIF</h1>
+        <form action="acceso.php" method="GET" onsubmit="return validacion()">
+            <label for="nif">NIF</label>
+            <input type="text" id="nif"/>
+            <input type="submit" value="ENVIAR" id="enviar"/>
+            <input type="reset" value="BORRAR" id="borrar"/>
+        </form>
+        <p id="resultado"></p>
+    </main>
+
+    <script>
+        const nif = document.getElementById("nif");
+
+        // Validación del formulario
+        function validacion() {
+            let valor = document.getElementById("nif").value;
+            const p = document.getElementById("resultado");
+            // El campo nif no puede estar vacío
+            if (valor.length == 0) {
+                p.innerHTML = "El campo NIF es obligatorio.";
+                return false;
+            }
+            // Debe ser introducido en la forma ddddddddL
+            var letras = "TRWAGMYFPDXBNJZSQVHLCKET";
+            if (!(/^\d{8}[A-Z]$/.test(valor))) {
+                p.innerHTML = "El campo NIF debe contener 8 dígitos y una letra mayúscula.";
+                return false;
+            }
+            // El nif debe ser correcto
+            if (valor.charAt(8) != letras[(valor.substring(0, 8))%23]) {
+                p.innerHTML = "La letra del NIF no se corresponde con el número.";
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+
+</html>

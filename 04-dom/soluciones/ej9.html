@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej9</title>
+</head>
+
+<body>
+    <form action="#" method="post" id="formulario">
+        <p>
+            <label for="usuario">Ingrese email:</label>
+            <input type="email" id="email" />
+            <span id="resultado1"></span>
+        </p>
+        <p>
+            <label for="sitio">Ingrese sitio web:</label>
+            <input type="url" id="url" />
+            <span id="resultado2"></span>
+        </p>
+        <p>
+            <input type="submit" value="confirmar" id="confirmar" />
+        </p>
+    </form>
+
+    <script>
+        const submit = document.getElementById("confirmar");
+        submit.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            validar();
+        }) // evitamos que el botón haga submit del form antes de validar
+
+        const regex_email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const regex_url = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+
+        function validar() {
+            const resultado1 = document.getElementById("resultado1");
+            const email = document.getElementById("email").value;
+            email.length === 0
+                ? resultado1.innerHTML = "El campo no puede estar vacío."
+                : regex_email.test(email) === true
+                    ? resultado1.innerHTML = "Correcto!"
+                    : resultado1.innerHTML = "El campo contiene errores.";
+
+            const resultado2 = document.getElementById("resultado2");
+            const url = document.getElementById("url").value;
+            url.length === 0
+                ? resultado2.innerHTML = "El campo no puede estar vacío."
+                : regex_url.test(url) === true
+                    ? resultado2.innerHTML = "Correcto!"
+                    : resultado2.innerHTML = "El campo contiene errores.";
+        }
+    </script>
+
+</body>
+
+</html>

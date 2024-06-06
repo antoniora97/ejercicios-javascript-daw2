@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Solución del ejercicio 2 </title>
+
+        <style>
+            *,
+            *::after,
+            *::before {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            main {
+                width: 90vw;
+                margin: auto;
+                padding: 1em;
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+                align-items: center;
+                justify-content: center;
+            }
+
+            button {
+                border: none;
+                padding: 0.5em;
+                outline: 1px solid #000;
+                background-color: #fff;
+            }
+
+            button:hover {
+                cursor: pointer;
+                background-color: #000;
+                color: #fff;
+            }
+
+            h6 {
+                margin-bottom: 2em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <h1>Ejercicio 2</h1>
+            <p>Generar los distintos tipos de título que tiene HTML.</p>
+            <button onclick="presentaTitulos()">Ejecutar</button>
+            <div id="resultado">
+
+            </div>
+            <a href="../index.html">Volver atrás.</a>
+        </main>
+
+        <script>
+            const resultado = document.getElementById("resultado");
+            const button = document.querySelector("button");
+            function presentaTitulos () {
+                for (let i = 1; i <= 6; i++) {
+                    let nivel = "" + i;
+                    let titulo = document.createElement("h"+nivel);
+                    titulo.innerHTML = "Esto es un " + nivel; 
+                    resultado.appendChild(titulo);
+                }
+                button.setAttribute("disabled", "disabled");
+            }
+        </script>
+    </body>
+
+</html>

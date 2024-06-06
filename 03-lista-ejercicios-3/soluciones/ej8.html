@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Solución del ejercicio 8 </title>
+
+    <style>
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        a {
+            width: fit-content;
+        }
+
+        main {
+            width: 25em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+        }
+
+        main h1 {
+            text-align: center;
+        }
+
+        main p {
+            text-align: center;
+            width: 100%;
+        }
+
+        #input-box {
+            display: flex;
+            gap: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Ejercicio 8</h1>
+        <p>Adivina el número secreto.</p>
+        <div id="input-box">
+            <label for="numero">Numero</label>
+            <input type="text" placeholder="0" id="numero" autofocus>
+            <button onclick="ejecutaTurno(document.getElementById('numero').value)">Evaluar</button>
+        </div>
+        <p id="resultado">Aquí aparecerá el resultado.</p>
+        <a href="../index.html">Volver atrás.</a>
+    </main>
+
+    <script>
+        // Generación del número aleatorio al recargar la página
+        const numero_secreto = Math.floor(Math.random() * 101);
+
+        // Ejecuta un turno
+        let intentos = 0;
+        const p = document.getElementById("resultado");
+        function ejecutaTurno (numero) {
+            document.getElementById("numero").value = "";
+            intentos += 1;
+            if (numero == numero_secreto) {
+                p.innerHTML = "Has acertado!<br/>Has necesitado " + intentos + " intentos.";
+                return true;
+            }
+            numero > numero_secreto 
+                ? p.innerHTML = "Sigue intentando! El número secreto es menor."
+                : p.innerHTML = "Sigue intentando! El número secreto es mayor.";
+        }
+    </script>
+</body>
+
+</html>

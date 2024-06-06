@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Solución del ejercicio 4 </title>
+
+        <style>
+            *,
+            *::after,
+            *::before {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            main {
+                width: 90vw;
+                margin: auto;
+                padding: 1em;
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+                align-items: center;
+                justify-content: center;
+            }
+
+            button {
+                border: none;
+                padding: 0.5em;
+                outline: 1px solid #000;
+                background-color: #fff;
+            }
+
+            button:hover {
+                cursor: pointer;
+                background-color: #000;
+                color: #fff;
+            }
+
+            body main #input-box {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            body main #input-box > * {
+                margin: 0 0.5em;
+            }
+
+            ul {
+                list-style-type: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <h1>Ejercicio 4</h1>
+            <p>Extraer cierta información de una cadena de texto.</p>
+            <div id="input-box">
+                <label for="numero">Texto</label>
+                <input type="text" placeholder="Escribe algo..." id="input">
+                <button onclick="extraeInfo(document.getElementById('input').value)">Ejecutar</button>
+            </div>
+            <ul>
+                <li>Aquí aparecerá la información.</li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <a href="../index.html">Volver atrás.</a>
+        </main>
+
+        <script>
+            const li_elements = document.querySelectorAll("li");
+            const input = document.querySelector("input");
+            function extraeInfo (cadena) {
+                if (cadena.length > 0) {
+                    input.value = '';
+                    let array_palabras = cadena.split(" ");
+                    // impresión de la cadena
+                    li_elements[0].innerHTML = "* La cadena es '" + cadena + "'.";
+                    // cantidad de palabras
+                    li_elements[1].innerHTML = "* Tiene " + array_palabras.length + " palabras.";
+                    // primera y última palabra
+                    li_elements[2].innerHTML = "* La primera palabra es '" + array_palabras[0] + "' y la última es '" + array_palabras[array_palabras.length-1] + "'."; 
+                    // palabras en orden inverso
+                    li_elements[3].innerHTML = "* Las palabras en orden inverso son ";
+                    for (let i in array_palabras.reverse()) {
+                        li_elements[3].innerHTML += "'" + array_palabras[i] + "'";
+                        if (i!=array_palabras.length-1) li_elements[3].innerHTML += ", "
+                        else li_elements[3].innerHTML += "."
+                    }
+                    // palabras ordenadas de a a z
+                    li_elements[4].innerHTML = "* Las palabras en orden alfabético son  ";
+                    for (let i in array_palabras.sort()) {
+                        li_elements[4].innerHTML += "'" + array_palabras[i] + "'";
+                        if (i!=array_palabras.length-1) li_elements[4].innerHTML += ", "
+                        else li_elements[4].innerHTML += "."
+                    }
+                    // palabras ordenadas de z a a
+                    li_elements[5].innerHTML = "* Las palabras en orden alfabético inverso son  ";
+                    for (let i in array_palabras.sort().reverse()) {
+                        li_elements[5].innerHTML += "'" + array_palabras[i] + "'";
+                        if (i!=array_palabras.length-1) li_elements[5].innerHTML += ", "
+                        else li_elements[5].innerHTML += "."
+                    }
+                } else {
+                    li_elements[0].innerHTML = "Introduce una cadena.";
+                    setTimeout( () => {
+                        li_elements[0].innerHTML = "Aquí aparecerá la información.";
+                    }, 2000);
+                }
+            }
+        </script>
+    </body>
+
+</html>

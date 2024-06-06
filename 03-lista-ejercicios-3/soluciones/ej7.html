@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Solución del ejercicio 7 </title>
+
+    <style>
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        a {
+            width: fit-content;
+        }
+
+        main {
+            width: 25em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+        }
+
+        main h1 {
+            text-align: center;
+        }
+
+        main p {
+            text-align: center;
+            width: 100%;
+        }
+
+        #input-box {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Ejercicio 6</h1>
+        <p>Resta de dos números introducidos.
+        </p>
+        <div id="input-box">
+            <label for="numero1">Numero 1</label>
+            <input type="text" placeholder="0" id="numero1">
+            <label for="numero2">Numero 2</label>
+            <input type="text" placeholder="0" id="numero2">
+            <button
+                onclick="resta(document.getElementById('numero1').value, document.getElementById('numero2').value)">Evaluar</button>
+        </div>
+        <p id="resultado">Aquí aparecerá el resultado.</p>
+        <a href="../index.html">Volver atrás.</a>
+    </main>
+
+    <script>
+        const p = document.getElementById("resultado");
+        function resta(numero1, numero2) {
+            document.getElementById("numero1").value = "";
+            document.getElementById("numero2").value = "";
+            numero1 = parseInt(numero1);
+            numero2 = parseInt(numero2);
+            if (!isNaN(numero1) && !isNaN(numero2)) {
+                numero1 > numero2
+                    ? p.innerHTML = numero1 + " - " + numero2 + " = " + (numero1 - numero2)
+                    : p.innerHTML = numero1 + " - " + numero2 + " = " + (numero2 - numero1);
+            } else {
+                p.innerHTML = "Introduce dos números."
+                setTimeout(() => {
+                    p.innerHTML = "Aquí aparecerá el resultado.";
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+
+</html>

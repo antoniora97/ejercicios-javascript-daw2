@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej11</title>
+
+    <style>
+        td {
+            padding: 0.5em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body onload="creaTabla()">
+
+    <button onclick="marcaCasiPrimos()">Calcular casi primos.</button>
+    
+    <script>
+        function creaTabla () {
+            let numero = 1;
+            const body = document.querySelector("body");
+            const table = document.createElement("table");
+            table.setAttribute("border", "1");
+            for (let i = 0; i < 10; i += 1) {
+                const tr = document.createElement("tr");
+                for (let j = 0; j < 10; j += 1) {
+                    const td = document.createElement("td");
+                    td.innerHTML = numero;
+                    numero += 1;
+                    tr.append(td);
+                }
+                table.appendChild(tr);
+            }
+            body.appendChild(table);
+        }
+
+        function marcaCasiPrimos () {
+            const td = document.querySelectorAll("td");
+            for (let i = 0; i < td.length; i += 1) {
+                let contador_divisores = 0;
+                let numero = parseInt(td[i].innerHTML);
+                for (let j = 2; j < numero; j += 1) {
+                    if (numero % j == 0) {
+                        contador_divisores += 1;
+                    }
+                }
+                if (contador_divisores == 1) {
+                    td[i].style.backgroundColor = "yellow";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

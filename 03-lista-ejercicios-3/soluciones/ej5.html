@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Solución del ejercicio 5 </title>
+
+    <style>
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        a {
+            width: fit-content;
+        }
+
+        main {
+            width: 25em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+        }
+
+        main h1 {
+            text-align: center;
+        }
+
+        main p {
+            text-align: center;
+            width: 100%;
+        }
+
+        #input-box {
+            display: flex;
+            gap: 1em;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #opciones {
+            display: grid;
+            gap: 1em;
+            grid-template-columns: auto auto;
+        }
+
+        #opciones button {
+            padding: 0.5em;
+            border: 1px solid #000000;
+            background-color: #ffffff;
+            cursor: pointer;
+        }
+
+        #opciones button:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Ejercicio 5</h1>
+        <p>Array de elementos.</p>
+        <div id="input-box">
+            <label for="elemento">Elemento</label>
+            <input type="text" placeholder="Escribe algo" id="elemento">
+            <div id="opciones">
+                <button onclick="insertarFinal(document.getElementById('elemento').value)">Insertar al final.</button>
+                <button onclick="insertarPrincipio(document.getElementById('elemento').value)">Insertar al principio.</button>
+                <button onclick="borrarPrimerElemento()">Borrar primer elemento.</button>
+                <button onclick="borrarUltimoElemento()">Borrar último elemento.</button>
+                <button onclick="ordenarASC()">Ordenar ascendentemente.</button>
+                <button onclick="ordenarDSC()">Ordenar descendentemente.</button>
+            </div>
+        </div>
+        <p id="resultado"></p>
+        <a href="../index.html">Volver atrás.</a>
+    </main>
+
+    <script>
+        const p = document.getElementById("resultado");
+        p.innerHTML = "Tu array es [ ]";
+        let array = [];
+
+        // Actualiza lo que se ve en el HTML
+        function actualizaDocumento () {
+            p.innerHTML = "Tu array es [ ";
+            for (let i in array) {
+                i != array.length-1
+                    ? p.innerHTML += array[i] + " - "
+                    : p.innerHTML += array[i] + " ";
+            }
+            p.innerHTML += "]";
+        }
+
+        // Inserta un elemento al final del array
+        function insertarFinal (elemento) {
+            document.getElementById("elemento").value = "";
+            if (elemento.length > 0) 
+                array.push(elemento);
+            actualizaDocumento();
+        }
+
+        // Insertar al principio del array
+        function insertarPrincipio (elemento) {
+            document.getElementById("elemento").value = "";
+            if (elemento.length > 0)
+                array.unshift(elemento);
+            actualizaDocumento();
+        }
+
+        // Borra el primer elemento del array
+        function borrarPrimerElemento () {
+            document.getElementById("elemento").value = "";
+            if (array.length > 0)
+                array.shift();
+            actualizaDocumento();
+        }
+
+        // Borra el último elemento del array
+        function borrarUltimoElemento () {
+            document.getElementById("elemento").value = "";
+            if (array.length > 0)
+                array.pop();
+            actualizaDocumento();
+        }
+
+        // Ordena ascendentemente el array
+        function ordenarASC () {
+            array.sort();
+            actualizaDocumento();
+        }
+
+        // Ordena descendentemente el array
+        function ordenarDSC () {
+            array.sort((a, b) => b - a);
+            actualizaDocumento();
+        }
+    </script>
+</body>
+
+</html>

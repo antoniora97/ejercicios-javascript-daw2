@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej3</title>
+
+    <script defer src="../js/ej4.js"></script>
+</head>
+
+<body>
+    <ul id="lista">
+        <li>Lorem ipsum dolor sit amet</li>
+        <li>Consectetuer adipiscing elit</li>
+        <li>Sed mattis enim vitae orci</li>
+        <li>Phasellus libero</li>
+        <li>Maecenas nisl arcu</li>
+    </ul>
+    <input type="button" value="Añadir elemento" onclick="anade();">
+
+    <script>
+        function anade() {
+            const lista = document.getElementById("lista")
+            const elemento = document.createElement("li");
+            elemento.innerHTML = prompt("Introduce el contenido del elemento: ");
+            lista.appendChild(elemento);
+        }
+    </script>
+</body>
+
+</html>

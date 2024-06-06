@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+</head>
+
+<body>
+
+    <h1></h1>
+
+    <h2 id="cliente">Cliente</h2>
+    <p id="nif"></p>
+    <p id="nombre"></p>
+    <p id="direccion"></p>
+    <p id="cp"></p>
+
+    <h2 id="desglose"></h2>
+    <table border="1" cellpadding="10px">
+        <tr>
+            <th>Artículo</th>
+            <th>Cantidad</th>
+            <th>Precio unitario</th>
+            <th>Precio</th>
+        </tr>
+    </table>
+
+    <script>
+
+        // Función que recupera la información de un archivo JSON y la interpreta en el HTML
+        function leerJSON() {
+            // Se abre la petición del documento JSON
+            const xhttp = new XMLHttpRequest()
+            xhttp.open('GET', "factura.json", true)
+            xhttp.send()
+            xhttp.onreadystatechange = function () {
+                // El estado 4 significa haber acabado la solicitud y si nos da un estado 200 todo ha ido bien
+                if (this.readyState === 4 && this.status === 200) {
+
+                    // Parseamos el JSON a Object
+                    const factura = JSON.parse(this.responseText)
+
+                    // Cabecera de la factura
+                    let numFact = factura.encabezado.numero
+                    let nomEmisor = factura.encabezado.emisor.nombre
+                    let fecha = new Date(factura.encabezado.fecha)
+                    document.querySelector("h1").innerHTML = `Factura Nº ${numFact} de ${nomEmisor} de ${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`
+
+                    // Datos del cliente
+                    document.getElementById("nif").innerHTML = factura.encabezado.receptor.nif
+                    document.getElementById("nombre").innerHTML = factura.encabezado.receptor.apellidos + ", " + factura.encabezado.receptor.nombre
+                    document.getElementById("direccion").innerHTML = factura.encabezado.receptor.direccion
+                    document.getElementById("cp").innerHTML = factura.encabezado.receptor.cp + " " + factura.encabezado.receptor.ciudad
+
+                    // Detalle de la factura
+                    const tabla = document.querySelector("table")
+                    let precio_sin_iva = 0
+                    let cantidad_total = 0
+                    for (let i = 0; i < factura.detalle.length; i += 1) {
+                        let tr = document.createElement("tr")
+                        let articulo = document.createElement("td")
+                        articulo.innerHTML = factura.detalle[i].articulo
+                        let cantidad = document.createElement("td")
+                        cantidad.innerHTML = factura.detalle[i].cantidad
+                        let precio_u = document.createElement("td")
+                        precio_u.innerHTML = factura.detalle[i].precio
+                        let precio_t = document.createElement("td")
+                        precio_t.innerHTML = parseInt(factura.detalle[i].cantidad) * parseInt(factura.detalle[i].precio)
+
+                        tr.appendChild(articulo)
+                        tr.appendChild(cantidad)
+                        tr.appendChild(precio_u)
+                        tr.appendChild(precio_t)
+
+                        tabla.appendChild(tr)
+
+                        precio_sin_iva += parseInt(precio_t.innerHTML)
+                        cantidad_total += parseInt(cantidad.innerHTML)
+                    }
+
+                    // Cálculos referentes a los datos de la factura
+                    let tr = document.createElement("tr")
+                    let base = document.createElement("td")
+                    base.innerHTML = "Base imponible: " + precio_sin_iva
+                    let iva = document.createElement("td")
+                    iva.innerHTML = "21% IVA"
+                    let iva_precio_u = document.createElement("td")
+                    iva_precio_u.innerHTML = parseFloat(precio_sin_iva * 0.21)
+                    let precio_con_iva = document.createElement("td")
+                    precio_con_iva.innerHTML = parseFloat(precio_sin_iva) + parseFloat(iva_precio_u.innerHTML)
+
+                    tr.appendChild(base)
+                    tr.appendChild(iva)
+                    tr.appendChild(iva_precio_u)
+                    tr.appendChild(precio_con_iva)
+                    tabla.appendChild(tr)
+                }
+            }
+        }
+
+        leerJSON()
+    </script>
+</body>
+
+</html>

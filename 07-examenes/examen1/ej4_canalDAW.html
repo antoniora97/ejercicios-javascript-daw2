@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canal DAW</title>
+</head>
+
+<body>
+    <h1></h1>
+    <p id="n-programas"></p>
+
+    <label for="generos-select">Selecciona un género:</label>
+    <select name="generos" id="generos-select" onchange="muestraProgramasPorGenero()">
+        <option>--Selecciona un género</option>
+    </select>
+    <section id="tabla">
+        <p>Listado de programas</p>
+        <table border="1">
+        </table>
+    </section>
+
+    <script>
+        const select = document.getElementById("generos-select");
+
+        fetch('ej2_canalDAW.json')
+            .then(res => res.json())
+            .then(json => {
+                // Por cada programa se sacan todos los géneros que tengan y se van añadiendo al array
+                // de generos. Luego, eliminamos los duplicados convirtiéndolo en un set y por cada elemento
+                // se crea un option con sus valores
+                let generos = []
+                json.programas.forEach(programa => programa.generos.forEach(genero => generos.push(genero)))
+                Array.from(new Set(generos)).forEach(e => {
+                    const option = document.createElement("option")
+                    option.setAttribute("value", e)
+                    option.innerHTML = e
+                    select.appendChild(option)
+                })
+            });
+
+        function muestraProgramasPorGenero() {
+            const seleccionado = select.options[select.selectedIndex].value
+            fetch('ej2_canalDAW.json')
+                .then(res => res.json())
+                .then(json => {
+
+                    // Borramos la tabla anterior
+                    const tabla = document.querySelector("table");
+                    tabla.textContent = "";
+
+                    // Cabecera de la tabla
+                    const th_hora = document.createElement("th")
+                    th_hora.innerHTML = "Hora";
+                    const th_nombre = document.createElement("th")
+                    th_nombre.innerHTML = "Nombre";
+                    const tr = document.createElement("tr")
+                    tr.appendChild(th_hora)
+                    tr.appendChild(th_nombre)
+                    tabla.appendChild(tr)
+
+                    // Contenido de la tabla
+                    Array.from(json.programas).forEach((e) => {
+                        if (Array.from(e.generos).includes(seleccionado)) {
+                            const td_hora = document.createElement("td")
+                            td_hora.innerHTML = e.horaEmision
+                            const td_nombre = document.createElement("td")
+                            td_nombre.innerHTML = e.nombre
+                            const tr = document.createElement("tr")
+                            tr.appendChild(td_hora)
+                            tr.appendChild(td_nombre)
+                            tabla.appendChild(tr)
+                        }
+                    })
+                })
+        }
+
+    </script>
+</body>
+
+</html>

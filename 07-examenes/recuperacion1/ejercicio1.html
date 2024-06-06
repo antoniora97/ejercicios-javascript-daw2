@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1 Cifrado Cesar - Cifrar y Desencriptar</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        main {
+            padding-top: 1em;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            gap: 2em;
+            justify-content: center;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+
+        #res-c,
+        #res-d {
+            color: #ff0000;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section>
+            <h1>Cifrado Cesar</h1>
+            <h3>- Cifrar -</h3>
+            <label for="cifrar">Texto a cifrar</label>
+            <textarea name="cifrar" id="cifrar" cols="30" rows="10" placeholder="escribe algo" required></textarea>
+            <label for="clave-c">Nivel de rotado (clave):</label>
+            <input type="number" id="clave-c" value="0" min="0" max="20" required>
+            <button onclick="cifrar()">Cifrar</button>
+            <p id="res-c"></p>
+        </section>
+
+        <section>
+            <h1>Cifrado Cesar</h1>
+            <h3>- Descifrar -</h3>
+            <label for="descifrar">Texto a descifrar</label>
+            <textarea name="descifrar" id="descifrar" cols="30" rows="10" placeholder="escribe algo"
+                required></textarea>
+            <label for="clave-d">Nivel de rotado (clave):</label>
+            <input type="number" id="clave-d" value="0" min="0" max="20" required>
+            <button onclick="descifrar()">Descifrar</button>
+            <p id="res-d"></p>
+        </section>
+    </main>
+
+    <script>
+        // Función que se encarga de cifrar el contenido del mensaje
+        function cifrar () {
+            // Elementos necesarios del DOM
+            const textareaValue = document.getElementById("cifrar").value
+            const clave = parseInt(document.getElementById("clave-c").value)
+            let abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" 
+            let resultado = document.getElementById("res-c")
+
+            // Borramos lo escrito anteriormente
+            resultado.innerHTML = ""
+
+            // Comprobamos que el mensaje tenga contenido, si no mostramos un error
+            if (textareaValue.length > 0) {
+                for (let i = 0; i < textareaValue.length; i += 1) {
+                    let letra = textareaValue[i].toUpperCase()
+                    if (abecedario.indexOf(letra) !== -1) {
+                        let indiceLetra = (abecedario.indexOf(letra) + clave) % 27;
+                        resultado.innerHTML += abecedario[indiceLetra];
+                    } else {
+                        resultado.innerHTML += textareaValue[i];
+                    }
+                }
+            } else {
+                resultado.innerHTML = "No has introducido nada."
+            }
+        }
+
+        // Función que se encarga de descifrar el contenido del mensaje
+        function descifrar () {
+            // Elementos necesarios del DOM
+            const textareaValue = document.getElementById("descifrar").value
+            const clave = parseInt(document.getElementById("clave-d").value)
+            let abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" 
+            let resultado = document.getElementById("res-d")
+
+            // Borramos lo escrito anteriormente
+            resultado.innerHTML = ""
+            
+            // Comprobamos que el mensaje tenga contenido, si no mostramos un error
+            if (textareaValue.length > 0) {
+                for (let i = 0; i < textareaValue.length; i++) {
+                    var letra = textareaValue[i].toUpperCase();
+                    if (abecedario.indexOf(letra) !== -1) {
+                        var indiceletra = (abecedario.indexOf(letra) + 27 - clave) % 27;
+                        resultado.innerHTML += abecedario[indiceletra];
+                    } else {
+                        resultado.innerHTML += textareaValue[i];
+                    }
+                }
+            } else {
+                resultado.innerHTML = "No has introducido nada."
+            }
+        }
+    </script>
+</body>
+
+</html>

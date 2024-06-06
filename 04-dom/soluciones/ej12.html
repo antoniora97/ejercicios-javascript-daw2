@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej12</title>
+
+    <style>
+    </style>
+</head>
+
+<body onload="creaCheckbox()">
+    <button onclick="marcar()">Marcar todos</button>
+    <button onclick="desmarcar()">Desmarcar todos</button>
+    <script>
+        function creaCheckbox() {
+            for (let i = 0; i < 100; i += 1) {
+                const checkbox = document.createElement("input");
+                checkbox.setAttribute("type", "checkbox");
+                checkbox.setAttribute("id", i);
+                
+                const label = document.createElement("label")
+                label.setAttribute("for", i);
+                label.innerHTML = Math.floor((Math.random() * (100 - 1 + 1)) + 1);
+                
+                const p = document.createElement("p");
+                p.appendChild(checkbox);
+                p.appendChild(label);
+
+                const body = document.querySelector("body");
+                body.appendChild(p);
+            }
+        }
+
+        function marcar() {
+            const checkbox = document.querySelectorAll("input");
+            for (let i = 0; i < checkbox.length; i += 1) {
+                checkbox[i].checked = true;
+            }
+        }
+
+        function desmarcar() {
+            const checkbox = document.querySelectorAll("input");
+            for (let i = 0; i < checkbox.length; i += 1) {
+                checkbox[i].checked = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

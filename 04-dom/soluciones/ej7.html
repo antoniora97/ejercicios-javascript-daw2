@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej7</title>
+    <script defer src="../js/ej8.js"></script>
+</head>
+
+<body>
+    <p>
+        <label for="valor1">Ingrese primer valor:</label>
+        <input type="number" id="valor1" />
+    </p>
+    <p>
+        <label for="valor2">Ingrese segundo valor:</label>
+        <input type="number" id="valor2" />
+    </p>
+    <p>
+        <select id="operacion">
+            <option value="suma">Sumar</option>
+            <option value="resta">Restar</option>
+        </select>
+    </p>
+    <p>
+        <input type="button" value="Operar" id="calculo" />
+    </p>
+    <p id="resultado1"></p>
+    <select multiple="multiple" id="operaciones">
+        <option value="suma">Sumar</option>
+        <option value="resta">Restar</option>
+    </select>
+    <p>
+        <input type="button" value="Operar" id="calculomultiple" />
+    </p>
+    <p id="resultado2"></p>
+
+    <script>
+        const btn1 = document.getElementById("calculo");
+        const btn2 = document.getElementById("calculomultiple");
+        const operaciones1 = document.getElementById("operacion").querySelectorAll("option");
+        const operaciones2 = document.getElementById("operaciones").querySelectorAll("option");
+
+        btn1.addEventListener("click", () => {
+            const resultado = document.getElementById("resultado1");
+            const valor1 = document.getElementById("valor1").value;
+            const valor2 = document.getElementById("valor2").value;
+            resultado.innerHTML = "";
+            if (operaciones1[0].selected)
+                resultado.innerHTML += "La suma es " + (parseInt(valor1) + parseInt(valor2)) + ". ";
+            if (operaciones1[1].selected)
+                resultado.innerHTML += "La resta es " + (parseInt(valor1) - parseInt(valor2));
+        });
+
+        btn2.addEventListener("click", () => {
+            const resultado = document.getElementById("resultado2");
+            const valor1 = document.getElementById("valor1").value;
+            const valor2 = document.getElementById("valor2").value;
+            resultado.innerHTML = "";
+            if (operaciones2[0].selected)
+                resultado.innerHTML += "La suma es " + (parseInt(valor1) + parseInt(valor2)) + ". ";
+            if (operaciones2[1].selected)
+                resultado.innerHTML += "La resta es " + (parseInt(valor1) - parseInt(valor2));
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Solución del ejercicio 6 </title>
+
+    <style>
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        a {
+            width: fit-content;
+        }
+
+        main {
+            width: 25em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+        }
+
+        main h1 {
+            text-align: center;
+        }
+
+        main p {
+            text-align: center;
+            width: 100%;
+        }
+
+        #input-box {
+            display: flex;
+            gap: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Ejercicio 6</h1>
+        <p>¿Es primo?</p>
+        <div id="input-box">
+            <label for="numero">Numero</label>
+            <input type="text" placeholder="0" id="numero">
+            <button onclick="esPrimo(document.getElementById('numero').value)">Evaluar</button>
+        </div>
+        <p id="resultado">Aquí aparecerá el resultado.</p>
+        <a href="../index.html">Volver atrás.</a>
+    </main>
+
+    <script>
+        const p = document.getElementById("resultado");
+        function esPrimo (numero) {
+            document.getElementById("numero").value = "";
+            numero = parseInt(numero);
+            if (numero >= 0) {
+                let contador_divisores = 0;
+                for (let i = 1; i <= numero; i++) {
+                    if (numero%i == 0)
+                        contador_divisores += 1;
+                }
+                contador_divisores > 2
+                    ? p.innerHTML = "El numero " + numero + " no es primo (" + contador_divisores + " divisores)."
+                    : p.innerHTML = "El numero " + numero + " es primo.";
+            } else {
+                p.innerHTML = "Introduce un número."
+                setTimeout(() => {
+                    p.innerHTML = "Aquí aparecerá el resultado.";
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+
+</html>

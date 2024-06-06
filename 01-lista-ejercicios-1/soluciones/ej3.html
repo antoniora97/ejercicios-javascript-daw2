@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Solución del ejercicio 3 </title>
+
+        <style>
+            *,
+            *::after,
+            *::before {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            main {
+                width: 90vw;
+                margin: auto;
+                padding: 1em;
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+                align-items: center;
+                justify-content: center;
+            }
+
+            button {
+                border: none;
+                padding: 0.5em;
+                outline: 1px solid #000;
+                background-color: #fff;
+            }
+
+            button:hover {
+                cursor: pointer;
+                background-color: #000;
+                color: #fff;
+            }
+
+            body main #input-box {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            body main #input-box > * {
+                margin: 0 0.5em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <h1>Ejercicio 3</h1>
+            <p>Calcular el factorial de un número introducido.</p>
+            <div id="input-box">
+                <label for="numero">Número</label>
+                <input type="text" placeholder="0" id="input">
+                <button onclick="calculaFactorial(document.getElementById('input').value)">Ejecutar</button>
+            </div>
+            <p id="resultado">Aquí aparecerá el factorial.</p>
+            <a href="../index.html">Volver atrás.</a>
+        </main>
+
+        <script>
+            const resultado = document.getElementById("resultado");
+            const input = document.querySelector("input");
+            function calculaFactorial (numero) {
+                numero = parseInt(numero);
+                input.value = '';
+                if (numero >= 0) {
+                    resultado.innerHTML = numero + "! = ";
+                    let factorial = 1;
+                    for (let i = numero; i >= 1; i--) {
+                        factorial *= i;
+                        if (i != 1) resultado.innerHTML += i + " x ";
+                        else resultado.innerHTML += i + " = ";
+                    }
+                    resultado.innerHTML += factorial;
+                } else {
+                    resultado.innerHTML = "Introduce un número mayor o igual a 0.";
+                    setTimeout( () => {
+                        resultado.innerHTML = "Aquí aparecerá la tabla."
+                    }, 2000);
+                }
+            }
+        </script>
+    </body>
+
+</html>

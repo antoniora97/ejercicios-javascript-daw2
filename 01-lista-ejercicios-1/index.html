@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Lista de ejercicios JavaScript básico 1 </title>
+
+    <style>
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 1em;
+            width: 75vw;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.5em;
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding: 0.3em;
+        }
+
+        p#indicacion {
+            background-color: #d0f2ff;
+            padding: 0.5em;
+            margin: 0.5em auto;
+            text-align: center;
+            border-top: 4px solid #255d74;
+            border-bottom: 4px solid #255d74;
+        }
+
+        table {
+            width: 100%;
+            border: 1px solid #000;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            text-align: justify;
+            background-color: #fff;
+        }
+
+        td:nth-child(odd),
+        th:nth-child(odd) {
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lista de ejercicios JavaScript básico 1</h1>
+    <p id="indicacion">Los estilos y el código javascript de cada ejercicio se encuentra dentro del mismo archivo html
+        correspondiente.</p>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Descripción</th>
+            <th>Solución</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Solicitar un número y presentar su tabla de multiplicar.</td>
+            <td><a href="./soluciones/ej1.html">link &rarr;</a></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Presentar en la página el texto “Javascript” en los 6 diferentes tipos de cabecera HTML, de
+                mayor a menor.</td>
+            <td><a href="./soluciones/ej2.html">link &rarr;</a></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>El factorial de un número entero n es una operación matemática que consiste en multiplicar
+                todos los factores n x (n-1) x (n-2) x ... x 1. Así, el factorial de 5 (escrito como 5!) es igual a: 5!
+                =
+                5 x 4 x 3 x 2 x 1 = 120. Utilizando la estructura for, crear un script que calcule el factorial de un
+                número entero.</td>
+            <td><a href="./soluciones/ej3.html">link &rarr;</a></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>
+                <ul>
+                    <p>Leer una cadena de texto mediante el método prompt() y generar un array con las palabras
+                        que contiene. Posteriormente, mostrar la siguiente información:
+                    </p>
+                    <li>- Número de palabras </li>
+                    <li>- Primera palabra y última palabra </li>
+                    <li>- Las palabras colocadas en orden inverso</li>
+                    <li>- Las palabras ordenadas de la a ‘a’ la ‘z’</li>
+                    <li>- Las palabras ordenadas de la ‘z’ a la ‘a’</li>
+                </ul>
+            </td>
+            <td><a href="./soluciones/ej4.html">link &rarr;</a></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>
+                <p>El cálculo de la letra del NIF es un proceso matemático sencillo que se basa en obtener el resto
+                    de la división entera del número de DNI y el número 23. A partir del resto de la división, se
+                    obtiene la letra seleccionándola según el siguiente orden: </p>
+                <br>
+                <p>T R W A G M Y F P D X B N J Z S Q V H L C K E</p>
+                <br>
+                <p>Por tanto si el resto de la división es 0, la letra del DNI es la T y si el resto es 3 la letra es la
+                    A.
+                    Elaborar un pequeño script que solicite en un campo de texto el DNI de un individuo y en otro
+                    la letra del mismo y compruebe si los datos son correctos o no.</p>
+            </td>
+            <td><a href="./soluciones/ej5.html">link &rarr;</a></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Escribe un script que contenga un párrafo y cinco botones. Cada uno de los botones debe
+                tener como etiqueta el nombre de un color y al pulsarlo pondrá el color del párrafo del mismo
+                color que indica. </td>
+            <td><a href="./soluciones/ej6.html">link &rarr;</a></td>
+        </tr>
+    </table>
+</body>
+
+</html>

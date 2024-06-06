@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej13</title>
+</head>
+
+<body>
+    <h1>Pulsa un párrafo para hacerlo desaparecer.</h1>
+
+    <p>Lorem ipsum dolor 1</p>
+    <p>Lorem ipsum dolor 2</p>
+    <p>Lorem ipsum dolor 3</p>
+
+    <button onclick="reaparece()">Reaparecer</button>
+
+    <script>
+        let clickCounter = 0;
+        let clickTimer = null;
+        const p = document.querySelectorAll("p");
+
+        p.forEach((e) => {
+            e.addEventListener("click", () => {
+                clickCounter++;
+                if (clickTimer !== null) {
+                    clearTimeout(clickTimer);
+                }
+                clickTimer = setTimeout(function () {
+                    if (clickCounter === 1) {
+                        e.style.visibility = "hidden";
+                    } else if (clickCounter === 2) {
+                        document.querySelector("body").removeChild(e);
+                    }
+                    clickCounter = 0;
+                }, 250);
+            });
+        });
+
+        function reaparece () {
+            p.forEach((e) => {
+                e.style.visibility = "visible";
+            });
+        }
+    </script>
+</body>
+
+</html>

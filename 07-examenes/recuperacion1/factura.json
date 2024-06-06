@@ -1,0 +1,30 @@
+{
+	"encabezado" : {
+		"numero" : 1234,
+		"fecha" : "2018-05-21",
+		"emisor" : {
+			"nombre" : "JuInfTel"
+		},
+		"receptor" : {
+			"nif" : "11111111-S",
+			"apellidos" : "Romero Vargas",
+			"nombre" : "Francisco",
+			"direccion" : "Avda. Moreno Mendoza S/N",
+			"cp" : "11408",
+			"ciudad" : "Jerez de la Frontera"
+		}
+	},
+	"detalle" : [
+		{
+			"articulo" : "HP 22w - Monitor de 22\"",
+			"cantidad" : "3",
+			"precio" : "100"
+		},
+		{
+			"articulo" : "Lenovo Ideapad 320-15AST - Portátil de 15.6\" HD",
+			"cantidad" : "1",
+			"precio" : "249"
+		}
+	],
+	"iva" : 21
+}

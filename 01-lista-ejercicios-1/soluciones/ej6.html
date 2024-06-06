@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Solución del ejercicio 6 </title>
+
+    <style>
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main {
+            width: 90vw;
+            margin: auto;
+            padding: 1em;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            border: none;
+            padding: 0.5em;
+            outline: 1px solid #000;
+            background-color: #fff;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: #000;
+            color: #fff;
+        }
+
+        #input-box {
+            display: flex;
+            gap: 1em;
+        }
+        
+        #btn-b {
+            background-color: blue;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #btn-y {
+            background-color: yellow;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #btn-o {
+            background-color: orange;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #btn-p {
+            background-color: purple;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #btn-r {
+            background-color: red;
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Ejercicio 6</h1>
+        <p>Soy un párrafo que cambia de color.</p>
+        <div id="input-box">
+            <button id="btn-b" onclick="document.querySelector('p').style.color = 'blue'">Azul</button>
+            <button id="btn-y" onclick="document.querySelector('p').style.color = 'yellow'">Amarillo</button>
+            <button id="btn-o" onclick="document.querySelector('p').style.color = 'orange'">Naranja</button>
+            <button id="btn-p" onclick="document.querySelector('p').style.color = 'purple'">Morado</button>
+            <button id="btn-r" onclick="document.querySelector('p').style.color = 'red'">Rojo</button>
+        </div>
+        <button onclick="document.querySelector('p').style.color = 'black'">Resetear</button>
+        <a href="../index.html">Volver atrás.</a>
+    </main>
+</body>
+
+</html>

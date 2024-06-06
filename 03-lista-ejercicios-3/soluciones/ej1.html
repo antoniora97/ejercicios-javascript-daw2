@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Solución del ejercicio 1 </title>
+
+    <style>
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        a {
+            width: fit-content;
+        }
+
+        main {
+            width: 25em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+        }
+
+        main h1 {
+            text-align: center;
+        }
+
+        main p {
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Ejercicio 1</h1>
+        <p>Milisegundos hasta fin de año.</p>
+        <p id="resultado">Aquí aparecerá el resultado.</p>
+        <a href="../index.html">Volver atrás.</a>
+    </main>
+
+    <script>
+        setInterval(() => {
+            const fechaActual = new Date();
+            const fechaActual_formateada = fechaActual.getDate() + "/" + (fechaActual.getMonth() + 1) + "/" + fechaActual.getFullYear()
+            const añoActual = fechaActual.getFullYear();
+            const finDeAño = new Date("12/31/" + añoActual);
+            const p_resultado = document.getElementById("resultado");
+            p_resultado.innerHTML = "Desde hoy " + fechaActual_formateada + " hasta fin de año quedan " + (finDeAño.getTime() - fechaActual.getTime());
+        }, 1000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canal DAW</title>
+
+    <style>
+        html {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        th,
+        td {
+            text-align: center;
+            padding: 0.6em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1></h1>
+    <p id="n-programas"></p>
+    <section id="tabla">
+        <p>Listado de programas</p>
+        <table border="1">
+            <tr>
+                <th>Hora</th>
+                <th>Nombre</th>
+            </tr>
+        </table>
+    </section>
+
+    <script>
+        const dias = ["momingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+        const titulo = document.querySelector("h1");
+        const numero_programas = document.getElementById("n-programas")
+        const table = document.querySelector("table")
+
+        function leerJSON () {
+            const xhttp = new XMLHttpRequest();
+            xhttp.open('GET', 'ej2_canalDAW.json', true);
+            xhttp.send();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    const jsonContent = JSON.parse(this.responseText);
+                    const programas = jsonContent.programas;
+
+                    const fecha = new Date(jsonContent.fecha)
+                    const dd = fecha.getDate()
+                    const mm = fecha.getMonth() + 1
+                    const yy = fecha.getFullYear()
+                    const diaSemana = dias[fecha.getDay()]
+                    titulo.innerHTML = `Programación del ${diaSemana} ${dd}/${mm}/${yy}`
+
+                    numero_programas.innerHTML = `Hay un total de ${programas.length} programas hoy.`;
+
+                    for (let i = 0; i < programas.length; i += 1) {
+                        const td_hora = document.createElement("td")
+                        td_hora.innerHTML = programas[i].horaEmision;
+                        const td_nombre = document.createElement("td")
+                        td_nombre.innerHTML = programas[i].nombre;
+                        td_nombre.setAttribute("class", "programa")
+                        const tr = document.createElement("tr")
+                        tr.appendChild(td_hora)
+                        tr.appendChild(td_nombre)
+                        table.appendChild(tr)
+                    }
+
+                    // Convertimos el HTMLCollection en un array para poder recorrer con forEach sus elementos
+                    Array.from(document.getElementsByClassName("programa")).forEach((e) => {
+                        e.addEventListener("click", () => {
+                            // el método find encuentra el programa sobre el que se ha pulsado click
+                            // pasamos ese objeto a string para poder reemplacar las ',' por ' / '
+                            alert(String(programas.find(el => el.nombre == e.textContent).generos).replaceAll(",", " / "))
+                        })
+                    })
+                }
+            }
+        }
+
+        leerJSON();
+    </script>
+</body>
+
+</html>
